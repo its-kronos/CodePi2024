@@ -2,7 +2,8 @@
     margin-left: 6%;
     margin-right:6%;
     color: gray;
-    margin-top:10%
+    margin-top:10%;
+    text-shadow: 0px 0px 100px darkslategray, 0px 0px 5ch white;
 }
 
 .Next_Button{
@@ -18,4 +19,5 @@
     color:darkslategray;
     text-decoration: underline;
     cursor:pointer;
+    text-shadow: 0px 0px 2.5ch whitesmoke;
 }
