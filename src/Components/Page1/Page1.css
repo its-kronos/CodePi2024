@@ -1,0 +1,8 @@
+.Next_Button{
+    margin-top: 15%;
+    font-size: 3vw;
+    color: white;
+    background: none;
+    border: none;
+    transition-duration: 200ms;
+}

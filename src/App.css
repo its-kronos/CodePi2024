@@ -4,20 +4,26 @@
     color: gray;
     margin-top:10%;
     text-shadow: 0px 0px 100px darkslategray, 0px 0px 5ch white;
-}
-
-.Next_Button{
-    margin-top: 15%;
-    font-size: 3vw;
-    color: white;
-    background: none;
-    border: none;
-    transition-duration: 200ms;
-}
-
+  }
+  
 .Next_Button:hover{
-    color:darkslategray;
-    text-decoration: underline;
-    cursor:pointer;
-    text-shadow: 0px 0px 2.5ch whitesmoke;
+  color:darkslategray;
+  text-decoration: underline;
+  cursor:pointer;
+  text-shadow: 0px 0px 2.5ch whitesmoke;
+}
+
+.PreFadeIn{
+  animation-delay: 300ms;
+  animation-duration: 1s;
+  animation-name: FadeIn;
+}
+
+@keyframes FadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
