@@ -1,13 +1,9 @@
-import fs from "fs/promises";
-import url from "url";
-import path from "path";
-import Papa from "papaparse";
+import {readString,RECORD_SEP,UNIT_SEP} from "react-papaparse";
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const data_path = path.join(__dirname,"../Data/Nasa_Data_12-28-2024.csv");
+const data_url = "/Data/Nasa_Data_12-28-2024.csv";
 
-let data = await fs.readFile(data_path,"utf-8");
+let file = await fetch(data_url);
+let data = await file.text();
 
 const parsing_parameters = {
 	delimiter: ",",	// auto-detect
@@ -30,16 +26,27 @@ const parsing_parameters = {
 	skipEmptyLines: true,
 	chunk: undefined,
 	chunkSize: undefined,
-	fastMode: undefined,
+	fastMode: true,
 	beforeFirstChunk: undefined,
 	withCredentials: undefined,
 	transform: undefined,
-	delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP],
+	delimitersToGuess: [',', '\t', '|', ';', RECORD_SEP, UNIT_SEP],
 	skipFirstNLines: 0
-}
+};
 
-let parsed_data = Papa.parse(data,parsing_parameters).data;
+let parsed_data = readString(data,parsing_parameters).data;
+
+let planets_per_year = {};
+
+parsed_data.map(d=>{
+    if (!(d.disc_year in planets_per_year)){
+        planets_per_year[d.disc_year] = 1;
+    }
+    else {
+        planets_per_year[d.disc_year]+=1;
+    }
+})
 
 export default function get_data(){
-    return parsed_data;
+    return parsed_data,planets_per_year;
 }
