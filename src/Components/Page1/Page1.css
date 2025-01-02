@@ -6,3 +6,7 @@
     border: none;
     transition-duration: 200ms;
 }
+
+.chart_container{
+    padding: 10%;
+}

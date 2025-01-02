@@ -38,15 +38,32 @@ let parsed_data = readString(data,parsing_parameters).data;
 
 let planets_per_year = {};
 
+let average_dis_per_year = {};
+
+let planets_per_year_offset = {};
+
 parsed_data.map(d=>{
     if (!(d.disc_year in planets_per_year)){
-        planets_per_year[d.disc_year] = 1;
+        planets_per_year[d.disc_year] = 0;
+		planets_per_year_offset[d.disc_year] = 0;
+		average_dis_per_year[d.disc_year] = 0;
     }
-    else {
         planets_per_year[d.disc_year]+=1;
-    }
+
+	if (typeof(Number(d.sy_dist))=="number"){
+		average_dis_per_year[d.disc_year]+=Number(d.sy_dist);
+	}
+	else{
+		planets_per_year_offset[d.disc_year]-=1;
+	}
 })
 
+for (const [k,_] of Object.entries(average_dis_per_year)){
+	average_dis_per_year[k]/=(planets_per_year[k]+planets_per_year_offset[k]);
+}
+
 export default function get_data(){
-    return parsed_data,planets_per_year;
+    return {"data":parsed_data,
+		"planets_py":planets_per_year,
+	"dis_avr_py":average_dis_per_year};
 }
