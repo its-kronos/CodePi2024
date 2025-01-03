@@ -42,12 +42,27 @@ let average_dis_per_year = {};
 
 let planets_per_year_offset = {};
 
+let discovery_method_count = {};
+
+let transit_planets_per_year = {};
+
 parsed_data.map(d=>{
     if (!(d.disc_year in planets_per_year)){
         planets_per_year[d.disc_year] = 0;
 		planets_per_year_offset[d.disc_year] = 0;
 		average_dis_per_year[d.disc_year] = 0;
+		transit_planets_per_year[d.disc_year] = 0;
     }
+
+	if (!(d.discoverymethod in discovery_method_count)){
+		discovery_method_count[d.discoverymethod] = 0;
+	}
+
+	if (d.discoverymethod=="Transit"){
+		transit_planets_per_year[d.disc_year]+=1
+	}
+
+		discovery_method_count[d.discoverymethod]+=1
         planets_per_year[d.disc_year]+=1;
 
 	if (typeof(Number(d.sy_dist))=="number"){
@@ -65,5 +80,7 @@ for (const [k,_] of Object.entries(average_dis_per_year)){
 export default function get_data(){
     return {"data":parsed_data,
 		"planets_py":planets_per_year,
-	"dis_avr_py":average_dis_per_year};
+	"dis_avr_py":average_dis_per_year,
+	"disc_mthd_ct":discovery_method_count,
+"transit_py":transit_planets_per_year};
 }
