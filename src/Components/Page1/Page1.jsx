@@ -42,7 +42,7 @@ function Page1(){
   const [chartTitle,setchartTitle] = useState(ppy_chart_title)
   const [chartType,setChartType] = useState("line")
     return (<div><center>
-        <h1>Exoplanet Data Visualiser</h1>
+        <h1>Exoplanet Data Visualizer</h1>
         <CheckInScreen_func>
           <p className='Explaining_Text'>How has the number of exoplanets discovered changed through time?<br></br>
           Could it be due to new technologies allowing us to find planets farther than ever, or could it be 
