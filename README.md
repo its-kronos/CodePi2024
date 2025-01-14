@@ -3,6 +3,8 @@
 > **DISCLAIMER: May take a couple seconds to load/parse**
 >
 > Demo: https://exoplanet-visualizer.netlify.app/
+>
+> Video: https://youtu.be/9WrUK0tPcTc
 > 
 > **Created for the CodePi Hackathon (2024-2025)**
 > 
